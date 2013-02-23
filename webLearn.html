@@ -1,9 +1,24 @@
 <!DOCTYPE html>
 <head>
-	<title> RUBBERBANDING BABY </title>
+	<title> Constraint </title>
+	<link rel="stylesheet" href = "style.css"/>
+	<link href='http://fonts.googleapis.com/css?family=Roboto+Condensed' rel='stylesheet' type='text/css'>
+
 </head>
 
 <body>
+	<p> "Design is... a small, limited form of tyranny imposed on an even smaller corner of the world."  --Khoi Vinh</p>
+	<select id = "shapeStyleSelect">
+  		<option value="line">line</option>
+	    <option value="circle">circle</option>
+	    <option value="triangle">triangle</option>
+  		<option value="rectangle">rectangle</option>
+	</select> <br/>
+	<select id = "fillStyleSelect">
+		<option value = "fill"> fill </option>
+		<option value = "stroke"> stroke </option>
+	</select>
+
 	<canvas id = 'canvas' width = '1000' height = '800'> </canvas> 
 	<script src='test.js'></script>
 </body>

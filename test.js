@@ -1,14 +1,14 @@
 var canvas = document.getElementById('canvas'),
+   shape = document.getElementById('shapeStyleSelect').value,
+   style = document.getElementById('fillStyleSelect').value,
    context = canvas.getContext('2d'),
    dragging = false,
    drawingSurfaceImageData,
    canvasX, 
    canvasY;
 
-//context.fillRect(0,0,100,100);  //testing, testing, 1, 2, 3, 4
-
-//PS GWEN. LEARN HOW TO CREATE A CANVAS THAT IS AUTOMATICALLY SIZE+WIDTH OF PAGE
-//HOW TO MAKE THAT RESPONSIVE AS WELL...?
+   
+  context.strokeRect(0,0,1000,800);  //testing, testing, 1, 2, 3, 4
 
 function saveDrawingSurface() {
    drawingSurfaceImageData = context.getImageData(0, 0,
@@ -18,6 +18,10 @@ function saveDrawingSurface() {
 
 function restoreDrawingSurface() {
    context.putImageData(drawingSurfaceImageData, 0, 0);
+}
+
+function square(number){
+   return number*number;
 }
 
 //GOT THIS CODE FROM STACK OVERFLOW
@@ -78,46 +82,62 @@ canvas.onmousemove = function(e){
         mouseX = e.layerX;
         mouseY = e.layerY;
     }
-
        //draw line from stored mouseclick to mouse location
-
-       
+       if (shape == 'line'){
        context.beginPath();
        context.moveTo(canvasX, canvasY);
        context.lineTo(mouseX, mouseY);
        context.stroke(); 
-
+       }
+       
        //draw a circle
-       /*
+       if (shape == 'circle'){
        context.beginPath();
-       context.arc(mouseX, mouseY, (sqrt(square(mouseX-canvasX) + square(mouseY-canvasY)))/2 , 0, Math.PI*2, false);
+       context.arc(canvasX, canvasY, (Math.sqrt(square(mouseX-canvasX) + square(mouseY-canvasY)))/2 , 0, Math.PI*2, false);
        context.closePath();
        context.stroke();
-       */
+       if (style == 'fill'){context.fill();}
+       }
 
        //draw a square
-       /*
+       
+       
+       if (shape == 'rectangle'){
        context.beginPath();
        context.strokeRect(canvasX, canvasY, mouseX-canvasX, mouseY-canvasY);
-       */
+       if (style == 'fill'){context.fillRect(canvasX, canvasY, mouseX-canvasX, mouseY-canvasY);}
+       }
 
        //draw a triangle
-       /*
+       
+       if (shape == 'triangle'){
        context.beginPath();
        context.moveTo(canvasX, canvasY);
        context.lineTo(mouseX, canvasY);
        context.lineTo(mouseX, mouseY);
        context.lineTo(canvasX, canvasY);
-       context.stroke(); */
-       
-   }
+      if (style == 'fill'){context.fill();}
 
+       context.stroke(); 
+       }  
+   }
 }
 
 canvas.onmouseup = function(e){
    dragging = false;
    //the end
 }
+
+shapeStyleSelect.onchange = function (e) {
+   shape = shapeStyleSelect.value;
+};
+
+fillStyleSelect.onchange = function (e) {
+   style = fillStyleSelect.value;
+};
+
+
+
 
 
 
